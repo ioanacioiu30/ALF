@@ -1,0 +1,43 @@
+grammar Bo$$;
+r : ID EQUAL Expr EOI;
+
+//Expression mathematique
+Expr : Sum ;
+
+//somme
+Sum : Sub '+' Sum 
+	| Sub
+	;
+
+//difference	
+Sub : Exp '-' Sub 
+	| Exp
+	;
+
+
+//multiplication	
+Div : Mul '/' Div 
+	| Mul
+	;
+
+//division
+Mul : Pri '*' Mul 
+	| Pri
+	;
+
+//pour priotiriser les fonctions selon les parantheses
+Pri : INT
+	| '('Sum')' 
+	;
+
+//nuombres
+INT : [0-9]+ ;
+//le nom de la variable
+ID : [a-zA-Z]+ ;
+
+//separateur
+ 
+EQUAL : ' = ' ;
+
+//End Of Input
+EOI : ' $$' ;
